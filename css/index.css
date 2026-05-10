@@ -1,0 +1,111 @@
+/* Сброс отступов и растягивание на весь экран */
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+
+.holy-grail {
+  display: flex;
+  flex-direction: column; /* Элементы идут сверху вниз */
+  min-height: 100vh;
+}
+
+/* Центральная часть */
+.holy-grail-body {
+  display: flex;
+  flex: 1; /* Занимает всё доступное пространство между шапкой и подвалом */
+}
+
+/* Стили колонок */
+.content {
+  flex: 1; /* Резиновый центр */
+}
+
+.side-left,
+.side-right {
+  width: 200px; /* Фиксированная ширина сайдбаров */
+  background: #f4f4f4;
+}
+
+/* Магия порядка: ставим контент в центр, хотя в HTML он первый */
+.side-left {
+  order: -1;
+}
+.side-right {
+  order: 1;
+}
+
+/* Адаптивность: превращаем в одну колонку на мобильных */
+@media (max-width: 768px) {
+  .holy-grail-body {
+    flex-direction: column;
+  }
+.nav {
+  flex-direction: column;
+  gap: 10px;
+}
+.items li{
+  width: 100%;
+  text-align: center;
+}
+  .side-left,
+  .side-right {
+    width: auto; /* Сайдбары на всю ширину */
+    order: 0; /* Возвращаем их в естественный порядок (под контент) */
+  }
+}
+
+/* Оформление для наглядности */
+header,
+footer {
+  background: #333;
+  color: white;
+  padding: 20px;
+}
+.content {
+  padding: 20px;
+}
+.side-left,
+.side-right {
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+.Nav {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+/* .items a {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  background-color: #ddd;
+  color: black;
+  list-style: none;
+} */
+.items {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.items li {
+  margin: 5px;
+}
+
+.items a {
+  display: block;
+  border: 1px solid silver;
+  border-radius: 5px;
+  background-color: #ddd;
+  color: black;
+  text-decoration: none;
+  padding: 8px 16px;
+  transition: 0.3s; /* Плавное изменение цвета */
+}
+
+.items a:hover {
+  background-color: #bbb;
+}

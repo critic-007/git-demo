@@ -1,1 +1,2 @@
 config/clink_history* 
+config/clink.log  echo config/clink_errorlevel_*.txt 

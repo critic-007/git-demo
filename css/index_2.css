@@ -1,0 +1,91 @@
+/* Общие стили для красоты */
+body {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+.nav-list {
+  position: relative;
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 12px;
+  list-style: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px 20px;
+  display: block;
+  position: relative;
+  z-index: 2; /* Чтобы текст был поверх индикатора */
+}
+
+/* --- МАГИЯ ANCHOR POSITIONING --- */
+
+/* 1. Называем каждый пункт своим именем-якорем */
+.item-1 {
+  anchor-name: --nav-1;
+}
+.item-2 {
+  anchor-name: --nav-2;
+}
+.item-3 {
+  anchor-name: --nav-3;
+}
+.item-4 {
+  anchor-name: --nav-4;
+}
+
+/* Обновленный индикатор с эффектом отскока */
+.nav-indicator {
+  position: absolute;
+  background: #4facfe;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+
+  /* 
+       cubic-bezier(0.68, -0.6, 0.32, 1.6) — это и есть магия отскока.
+       Первое отрицательное значение дает замах назад, 
+       последнее значение больше 1 дает "перелет" цели.
+    */
+  transition:
+    position-anchor 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    top 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    left 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    width 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    height 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    opacity 0.2s ease;
+
+  width: anchor-size(width);
+  height: anchor-size(height);
+}
+
+/* 3. Переключаем якорь при ховере через селектор :has */
+.nav-list:has(.item-1:hover) .nav-indicator {
+  position-anchor: --nav-1;
+  position-area: center;
+  opacity: 1;
+}
+.nav-list:has(.item-2:hover) .nav-indicator {
+  position-anchor: --nav-2;
+  position-area: center;
+  opacity: 1;
+}
+.nav-list:has(.item-3:hover) .nav-indicator {
+  position-anchor: --nav-3;
+  position-area: center;
+  opacity: 1;
+}
+.nav-list:has(.item-4:hover) .nav-indicator {
+  position-anchor: --nav-4;
+  position-area: center;
+  opacity: 1;
+}

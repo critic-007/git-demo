@@ -1,39 +1,159 @@
-/* Сброс отступов и растягивание на весь экран */
+/* --- БАЗОВАЯ ВЕРСТКА --- */
 body,
 html {
   margin: 0;
   height: 100%;
+  font-family: sans-serif;
 }
 
 .holy-grail {
   display: flex;
-  flex-direction: column; /* Элементы идут сверху вниз */
+  flex-direction: column;
   min-height: 100vh;
 }
 
-/* Центральная часть */
 .holy-grail-body {
   display: flex;
-  flex: 1; /* Занимает всё доступное пространство между шапкой и подвалом */
+  flex: 1;
 }
 
-/* Стили колонок */
 .content {
-  flex: 1; /* Резиновый центр */
+  flex: 1;
+  padding: 20px;
 }
 
 .side-left,
 .side-right {
-  width: 200px; /* Фиксированная ширина сайдбаров */
+  width: 200px;
   background: #f4f4f4;
+  padding: 20px;
+  border: 1px solid #ddd;
 }
 
-/* Магия порядка: ставим контент в центр, хотя в HTML он первый */
 .side-left {
   order: -1;
 }
 .side-right {
   order: 1;
+}
+
+header,
+footer {
+  background: #333;
+  color: white;
+  padding: 20px;
+}
+
+/* --- НАВИГАЦИЯ И ЯКОРЯ --- */
+
+.Nav {
+  position: relative; /* Контейнер для индикатора */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  background: #444;
+  border-radius: 8px;
+}
+
+.items li {
+  margin: 5px;
+  z-index: 2; /* Текст выше фона */
+}
+
+.items a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #ddd;
+  border: 1px solid silver;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+/* Присваиваем имена якорей (должны быть на li или a) */
+.item-1 {
+  anchor-name: --nav-1;
+}
+.item-2 {
+  anchor-name: --nav-2;
+}
+.item-3 {
+  anchor-name: --nav-3;
+}
+.item-4 {
+  anchor-name: --nav-4;
+}
+
+/* --- ИНДИКАТОР С ОТСКОКОМ --- */
+
+.nav-indicator {
+  position: absolute;
+  /* Создаем длинный градиент для анимации */
+  background: linear-gradient(120deg, #4facfe, #00f2fe, #4facfe, #71c5ee);
+  background-size: 300% 300%; /* Увеличиваем размер, чтобы было чему двигаться */
+  animation: moveGradient 3s ease infinite; /* Запускаем бесконечную анимацию */
+
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
+
+  /* Эффект отскока (твой код) */
+  transition:
+    position-anchor 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    top 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    left 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    width 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    height 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    opacity 0.2s ease;
+
+  width: anchor-size(width);
+  height: anchor-size(height);
+}
+/* Улучшаем читаемость: меняем цвет текста ссылки, когда на её родителя (li) наведен курсор */
+.Nav li:hover a {
+  color: #fff; /* Белый текст на фоне индикатора */
+  background-color: transparent; /* Убираем серый фон кнопки, чтобы видеть индикатор */
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Описываем движение градиента */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Логика переключения (используем класс .Nav из твоего HTML) */
+.Nav:has(.item-1:hover) .nav-indicator {
+  position-anchor: --nav-1;
+  position-area: center;
+  opacity: 1;
+}
+.Nav:has(.item-2:hover) .nav-indicator {
+  position-anchor: --nav-2;
+  position-area: center;
+  opacity: 1;
+}
+.Nav:has(.item-3:hover) .nav-indicator {
+  position-anchor: --nav-3;
+  position-area: center;
+  opacity: 1;
+}
+.Nav:has(.item-4:hover) .nav-indicator {
+  position-anchor: --nav-4;
+  position-area: center;
+  opacity: 1;
 }
 
 /* Адаптивность: превращаем в одну колонку на мобильных */
@@ -54,58 +174,4 @@ html {
     width: auto; /* Сайдбары на всю ширину */
     order: 0; /* Возвращаем их в естественный порядок (под контент) */
   }
-}
-
-/* Оформление для наглядности */
-header,
-footer {
-  background: #333;
-  color: white;
-  padding: 20px;
-}
-.content {
-  padding: 20px;
-}
-.side-left,
-.side-right {
-  padding: 20px;
-  border: 1px solid #ddd;
-}
-.Nav {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-/* .items a {
-  display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid silver;
-  border-radius: 5px;
-  background-color: #ddd;
-  color: black;
-  list-style: none;
-} */
-.items {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.items li {
-  margin: 5px;
-}
-
-.items a {
-  display: block;
-  border: 1px solid silver;
-  border-radius: 5px;
-  background-color: #ddd;
-  color: black;
-  text-decoration: none;
-  padding: 8px 16px;
-  transition: 0.3s; /* Плавное изменение цвета */
-}
-
-.items a:hover {
-  background-color: #bbb;
 }

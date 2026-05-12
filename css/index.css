@@ -101,6 +101,7 @@ footer {
   opacity: 0;
   pointer-events: none;
   box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
+  opacity: 10;
 
   /* Эффект отскока (твой код) */
   transition:

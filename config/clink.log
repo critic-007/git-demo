@@ -70,3 +70,15 @@
 3148 reset_handle              144 resetting mismatched stdout handle
 3148 reset_handle              144 resetting mismatched stderr handle
 3148 history_db::compact      1599 History:  74 active, 31 deleted
+4838 reset_handle              144 resetting mismatched stdout handle
+4838 reset_handle              144 resetting mismatched stderr handle
+4838 history_db::compact      1599 History:  72 active, 33 deleted
+4838 reset_handle              144 resetting mismatched stdout handle
+4838 reset_handle              144 resetting mismatched stderr handle
+4838 history_db::compact      1599 History:  72 active, 33 deleted
+4838 reset_handle              144 resetting mismatched stdout handle
+4838 reset_handle              144 resetting mismatched stderr handle
+4838 history_db::compact      1599 History:  70 active, 35 deleted
+4838 reset_handle              144 resetting mismatched stdout handle
+4838 reset_handle              144 resetting mismatched stderr handle
+4838 history_db::compact      1599 History:  70 active, 35 deleted

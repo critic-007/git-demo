@@ -125,14 +125,14 @@ footer {
 /* Описываем движение градиента */
 @keyframes moveGradient {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 25%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 25% 50%;
   }
   100% {
-    background-position: 0% 50%;
-  }
+    background-position: 50% 100%;
+   }
 }
 
 /* Логика переключения (используем класс .Nav из твоего HTML) */

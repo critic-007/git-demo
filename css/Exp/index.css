@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: bisque;
+  height: 100vh;
+}
+
+.wraper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 300px;
+
+  background-color: antiquewhite;
+  display: grid;
+  place-items: center;
+  border: 2px dashed;
+  background: linear-gradient(45deg, rgb(186, 141, 96), rgb(112, 199, 112), rgb(157, 172, 203),  rgb(183, 171, 105),rgb(0, 255, 234),rgb(165, 10, 196));
+  background-size: 400% 400%;
+  animation: gradientShift 15s infinite ease-in;
+}
+.button {
+  padding: 20px 40px;
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
